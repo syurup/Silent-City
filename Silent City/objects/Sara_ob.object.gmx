@@ -26,10 +26,10 @@
           <argument>
             <kind>1</kind>
             <string>///변수 설정
-
 Rspeed = 4;
 Lspeed = 4;
 Jspeed = 11;
+Goomba = 8;
 Gspeed = 1;
 //속도 설정(이 값들로 간단하게 속도 등 설정가능)
 
@@ -42,11 +42,13 @@ xdir = 1;
 move_check = 0;
 jump_check = 0;
 um_check = 0;
-glide_check = 0;
 //각종 체크용 변수(0 또는 1)
 
 image_speed = 0.1;
 //기본 이미지 스피드
+
+//댕댕이와 상호작용 
+global.goomba=0;
 </string>
           </argument>
         </arguments>
@@ -70,6 +72,9 @@ image_speed = 0.1;
           <argument>
             <kind>1</kind>
             <string>///애니메이션 및 중력 및 이동
+
+global.sarax = x;
+global.saray = y;
 
 if(place_free(x, y + 1) and um_check == 0)
     {
@@ -97,69 +102,76 @@ else if(not place_free(x, y + 1))
         gravity_direction = 270;
         gravity = 0;
         jump_check = 0;
-        glide_check = 0;
     }
 //중력 설정(밑에 무언가가 없으면 중력 적용)
 
 if(not place_free(x - 4, y))
     {
-        x = x + 4;
+       x = x + 4;
     }
 if(not place_free(x + 4, y))
     {
-        x = x - 4;
+       x = x - 4;
     }
 //좌우 이동 제한
     
 if (jump_check == 0)
     {
-    if (move_check == 1)
-        {
+        if (move_check == 1)
+            {
+                    if(xdir == 1)
+                        {
+                            if !audio_is_playing(walk_snd)
+                                {
+                                    audio_play_sound(walk_snd,1,0);//걷기효과음
+                                }
+                            if(um_check == 0)
+                                {
+                                    image_speed = 0.4;
+                                    sprite_index = closewalk_sp;
+                                }
+                            else if(um_check == 1)
+                                {
+                                    image_speed = 0.4;
+                                    sprite_index = openwalk_sp;
+                                }
+                        }
+                    else if(xdir == -1)
+                        {
+                            if !audio_is_playing(walk_snd)
+                                {
+                                    audio_play_sound(walk_snd,1,0);//걷기효과음
+                                }
+                            if(um_check == 0)
+                                {
+                                    image_speed = 0.4;
+                                    sprite_index = closewalk_left_sp;
+                                }
+                            else if(um_check == 1)
+                                {
+                                    image_speed = 0.4;
+                                    sprite_index = openwalk_left_sp;
+                                }
+                        }
+                        
+            }
+        else if(move_check == 0)
+            {
                 if(xdir == 1)
                     {
                         if(um_check == 0)
                             {
-                                image_speed = 0.4;
-                                sprite_index = closewalk_sp;
+                                image_speed = 0.1;
+                                sprite_index = closeidle_sp;
                             }
                         else if(um_check == 1)
                             {
-                                image_speed = 0.4;
-                                sprite_index = openwalk_sp;
+                                image_speed = 0.1;
+                                sprite_index = openidle_sp;
                             }
                     }
                 else if(xdir == -1)
                     {
-                        if(um_check == 0)
-                            {
-                                image_speed = 0.4;
-                                sprite_index = closewalk_left_sp;
-                            }
-                        else if(um_check == 1)
-                            {
-                                image_speed = 0.4;
-                                sprite_index = openwalk_left_sp;
-                            }
-                    }
-                    
-        }
-    else if(move_check == 0)
-        {
-            if(xdir == 1)
-                {
-                    if(um_check == 0)
-                        {
-                            image_speed = 0.1;
-                            sprite_index = closeidle_sp;
-                        }
-                    else if(um_check == 1)
-                        {
-                            image_speed = 0.1;
-                            sprite_index = openidle_sp;
-                        }
-                }
-            else if(xdir == -1)
-                {
                         if(um_check == 0)
                             {
                                 image_speed = 0.1;
@@ -170,55 +182,51 @@ if (jump_check == 0)
                                 image_speed = 0.1;
                                 sprite_index = openidle_left_sp;
                             }
-                }
-        }
-}
-else if(jump_check == 1)
-    {
-        if(glide_check == 0)
-            {
-                if(xdir == 1)
-                    {
-                        if(um_check == 0)
-                            {
-                                image_speed = 0.1;
-                                sprite_index = closejump_sp;
-                            }
-                        else if(um_check == 1)
-                            {
-                                image_speed = 0.1;
-                                sprite_index = openjump_sp;
-                            }
-                    }
-                else if(xdir == -1)
-                    {
-                        if(um_check == 0)
-                            {
-                                image_speed = 0.1;
-                                sprite_index = closejump_left_sp;
-                            }
-                        else if(um_check == 1)
-                            {
-                                image_speed = 0.1;
-                                sprite_index = openjump_left_sp;
-                            }
                     }
             }
-        if(glide_check == 1)
+    }
+else if(jump_check == 1)
+    {               
+        audio_stop_sound(walk_snd);//걷기 소리제거 
+        if(xdir == 1)
             {
-                if(xdir == 1)
+                if(um_check == 0)
                     {
-                        image_speed = 0.3;
+                        image_speed = 0.1;
+                        sprite_index = closejump_sp;
+                    }
+                else if(um_check == 1)
+                    {
+                        image_speed = 0.2;
                         sprite_index = glide_sp;
                     }
-                else if(xdir == -1)
+            }
+        else if(xdir == -1)
+            {
+                if(um_check == 0)
                     {
-                        image_speed = 0.3;
+                        image_speed = 0.1;
+                        sprite_index = closejump_left_sp;
+                    }
+                else if(um_check == 1)
+                    {
+                        image_speed = 0.2;
                         sprite_index = glide_left_sp;
                     }
             }
     }
 //애니메이션 - 체크용 변수들을 활용해 하나하나 지정함
+
+
+//몹밟
+if(global.goomba == 1)
+    {
+        vspeed = -Goomba;
+        audio_play_sound(goomba_snd,1,0);
+        audio_stop_sound(walk_snd);
+        global.goomba = 0;
+    }
+
 </string>
           </argument>
         </arguments>
@@ -227,17 +235,27 @@ else if(jump_check == 1)
     <event eventtype="4" ename="room_wall_ob">
       <action>
         <libid>1</libid>
-        <id>222</id>
-        <kind>0</kind>
+        <id>603</id>
+        <kind>7</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_next_room</functionname>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == title)
+    {
+        room = ch0_cut0;
+    }
+</string>
+          </argument>
+        </arguments>
       </action>
     </event>
     <event eventtype="4" ename="normal_wall_ob">
@@ -309,6 +327,7 @@ else if(jump_check == 1)
             <kind>1</kind>
             <string>///오른쪽 이동(키보드 누름)
 
+
 if(move_check == 1 and xdir == -1 and key_check == 0)
     {
         hspeed = Rspeed;
@@ -347,6 +366,9 @@ else if(move_check == 0 and key_check == 0)
             <kind>1</kind>
             <string>///왼쪽 이동(키보드 누름)
 
+
+
+//왼쪽이동 
 if(move_check == 1 and xdir == 1 and key_check == 0)
     {
         move_check = 1;
@@ -391,6 +413,7 @@ if(jump_check == 0)
             {
                     vspeed = -Jspeed;
                     audio_play_sound(jump_snd,1,0);
+                    audio_stop_sound(walk_snd);
             }
     }
 </string>
@@ -420,10 +443,12 @@ if(jump_check == 0)
 if(um_check == 0)
     {
         um_check = 1;
+        audio_play_sound(um_open_snd,1,0);
     }
 else if(um_check == 1)
     {
         um_check = 0;
+        audio_play_sound(um_close_snd,1,0);
     }
 //토글 함수로 작동(점프시에는 우산 못핌)
 </string>
@@ -449,6 +474,7 @@ else if(um_check == 1)
           <argument>
             <kind>1</kind>
             <string>///오른쪽 이동(키보드 릴리즈)
+audio_stop_sound(walk_snd);
 
 if(move_check == 1 and xdir == 1 and key_check == 0)
     {
@@ -491,6 +517,8 @@ else if(move_check == 1 and xdir == 1 and key_check == 1)
           <argument>
             <kind>1</kind>
             <string>///왼쪽 이동(키보드 릴리즈)
+//걷기효과음멈춤 
+audio_stop_sound(walk_snd);
 
 if(move_check == 1 and xdir == -1 and key_check == 0)
     {

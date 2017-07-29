@@ -29,6 +29,9 @@
 movespeed = 2;//속도 
 dir=1;//좌우바꾸 는용 
 hsp=2;
+attack=0;
+global.goomba=0;
+//global.knockback=0;//1 오른쪽으로 밀려남 ,2왼쪽으로 밀려남 
 
 </string>
           </argument>
@@ -61,7 +64,7 @@ if (place_meeting(x+1,y,normal_wall_ob))
 //audio_play_sound(jump_snd,1,0)
 dir=-1
 }
-else if (place_meeting(x-1,y,normal_wall_ob))
+if (place_meeting(x-1,y,normal_wall_ob))
 {
 //audio_play_sound(jump_snd,1,0)
 dir=1
@@ -82,48 +85,101 @@ else
         gravity = 0;
     }
     
+    
+    
+    //댕적댕  
+if (place_meeting(x+8,y,dog_ob))
+{
+    dir=-1//왼 
+}
+ if (place_meeting(x-8,y,dog_ob))
+{
+    dir=1//ㅇㅎ른 오른쪽 
+}
+    
+    
 
-//굼바킬(뚝배기부수기)
+//굼바킬(뚝배기부수기) 설띵충: 굼바킬ㅇ은 마리오에서 나온 말루 밟아 쥬긴단 말이다 ㅎ 그래서 누물보?
 if (place_meeting(x,y,Sara_ob))
 {
-    if (Sara_ob.y &lt; y-16)
+    if (Sara_ob.y &lt; y-16)//머리에 밟앗는지 
     {
-        instance_destroy();
+        instance_destroy();//사라지는모션ㄴ으로바ㄸ꿔야대
+        global.goomba=1;
     }
     else
     {
-        game_restart();
+    attack=1;  
     }
 }
 //플레이어시야에 잇을때
-if (collision_line(x,y,Sara_ob.x,Sara_ob.y,normal_wall_ob,true,true)=noone)
+if (collision_line(x,y+1,Sara_ob.x,Sara_ob.y,normal_wall_ob,true,true)=noone)
 {
-    if (distance_to_object(Sara_ob) &lt;= 10) //플레이어 어그로범위 
+    if (distance_to_object(Sara_ob) &lt;= 150) //플레이어 어그로범위 
         {
+         if !(place_meeting(x,y,dog_ob))
+         {
             if (Sara_ob.x&gt;x)
                 {
                     hspeed=movespeed;
                     image_speed = 0.2;
                     sprite_index = dog_walk_sp;
-                }
-        }
-        
-    if(Sara_ob.x&lt;x)
+                    if (attack==1)
+                    attack=2;//오른쪽공격 
+                    }
+                    
+           else if(Sara_ob.x&lt;=x)
         {
             hspeed=-movespeed;
             image_speed = 0.2;
             sprite_index = dog_walk_left_sp;
-   
+
+             if (attack==1)
+             attack=3;//왼쪽공격 
+            
         }
-        if(Sara_ob.x=x)
-        {
-            hspeed=0;
-            image_speed = 0.0;
-            sprite_index = dog_idle_sp;
         }
+        }
+
+  ///      if(Sara_ob.x=x)
+  //      {
+  //          hspeed=0;
+  //          image_speed = 0.0;
+  //          sprite_index = dog_idle_sp;
+   //     }
+    if (distance_to_object(Sara_ob) &lt;= 8) //플레이어 어그로범위 
+   if(attack==2)
+   {
+        if !audio_is_playing(dog_bark_snd){
+     audio_play_sound(dog_bark_snd,1,0);}
+     image_speed = 0.1;
+     sprite_index = dog_attack_sp;
+     attack=0;
+     //global.knockback=1;//세라가오른쪽으로밀려남 
+      }
+
+   if(attack==3)
+   {
+   if !audio_is_playing(dog_bark_snd){
+     audio_play_sound(dog_bark_snd,1,0);}
+     image_speed = 0.1;
+     sprite_index = dog_attack_left_sp;
+     attack=0;
+      //global.knockback=2;//세라가 왼쪽으로 밀려남  
+     }
+
+
 }
 
-
+//스파이더독 ~ 을 방지 (벽에 붙어서워킹없앰) 
+if(not place_free(x - 2, y))
+    {
+        x = x + 2
+    }
+if(not place_free(x + 2, y))
+    {
+        x = x - 2
+    }
 </string>
           </argument>
         </arguments>
@@ -177,6 +233,22 @@ if (collision_line(x,y,Sara_ob.x,Sara_ob.y,normal_wall_ob,true,true)=noone)
             <string>0</string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>203</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_kill_object</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

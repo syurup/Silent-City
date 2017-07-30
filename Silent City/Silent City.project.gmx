@@ -52,6 +52,8 @@
       <sprite>sprites\normal_wall_sp</sprite>
       <sprite>sprites\test_wall_sp</sprite>
       <sprite>sprites\oneway_wall_sp</sprite>
+      <sprite>sprites\instant_wall_spp</sprite>
+      <sprite>sprites\ch0_check_sp</sprite>
     </sprites>
     <sprites name="Entity">
       <sprites name="dog">
@@ -76,13 +78,36 @@
     </sprites>
     <sprites name="Cutscene">
       <sprites name="Chapter 0">
-        <sprite>sprites\ch0_girl_walk_sp</sprite>
-        <sprite>sprites\ch0_girl_stop_sp</sprite>
-        <sprite>sprites\ch0_dog_walk_sp</sprite>
-        <sprite>sprites\ch0_dog_stop_sp</sprite>
-        <sprite>sprites\ch0_dog_run_sp</sprite>
-        <sprite>sprites\ch0_girl_walk_left_sp</sprite>
+        <sprites name="cutscene 0">
+          <sprite>sprites\ch0_girl_stop_sp</sprite>
+          <sprite>sprites\ch0_girl_walk_sp</sprite>
+          <sprite>sprites\ch0_dog_run_sp</sprite>
+          <sprite>sprites\ch0_girl_walk_left_sp</sprite>
+          <sprite>sprites\ch0_dog_walk_sp</sprite>
+          <sprite>sprites\ch0_dog_stop_sp</sprite>
+        </sprites>
+        <sprites name="cutscene 1">
+          <sprite>sprites\ch0_cut1_dog_sp</sprite>
+          <sprite>sprites\ch0_cut1_dog_left_sp</sprite>
+          <sprite>sprites\ch0_cut1_reddog_sp</sprite>
+        </sprites>
+        <sprites name="cutscene 2">
+          <sprite>sprites\lift_sp</sprite>
+          <sprite>sprites\sara_lift_sp</sprite>
+          <sprite>sprites\girl_lift_sp</sprite>
+          <sprite>sprites\girl_lift_see_sp</sprite>
+          <sprite>sprites\sara_lift_stop_sp</sprite>
+        </sprites>
+        <sprite>sprites\ch0_1_girl_sp</sprite>
       </sprites>
+    </sprites>
+    <sprites name="Items">
+      <sprite>sprites\bone_sp</sprite>
+      <sprite>sprites\mokjul_sp</sprite>
+    </sprites>
+    <sprites name="NPC">
+      <sprite>sprites\bigdog_sp</sprite>
+      <sprite>sprites\bigdog_want_sp</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -94,6 +119,9 @@
     <backgrounds name="Chapter 0">
       <background>background\ch0_cut0_bg</background>
       <background>background\ch0_0_bg</background>
+      <background>background\ch0_cut1_bg</background>
+      <background>background\ch0_1_bg</background>
+      <background>background\ch0_cut2_bg</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths">
@@ -116,17 +144,43 @@
       <object>objects\normal_wall_ob</object>
       <object>objects\room_wall_ob</object>
       <object>objects\oneway_wall_ob</object>
+      <object>objects\instant_wall_ob</object>
     </objects>
     <objects name="Entity">
       <object>objects\dog_ob</object>
       <object>objects\Sara_ob</object>
     </objects>
     <objects name="Chapter 0">
-      <object>objects\ch0_girl_ob</object>
-      <object>objects\ch0_dog_ob</object>
-      <object>objects\ch0_fall_sara_ob</object>
+      <objects name="cutscene 0">
+        <object>objects\ch0_dog_ob</object>
+        <object>objects\ch0_fall_sara_ob</object>
+        <object>objects\ch0_girl_ob</object>
+      </objects>
+      <objects name="cutscene 1">
+        <object>objects\cut1_con_ob</object>
+        <object>objects\cut1_sara_ob</object>
+        <object>objects\cut1_dog_ob</object>
+        <object>objects\cut1_reddog_ob</object>
+      </objects>
+      <objects name="cutscene 2">
+        <object>objects\lift_ob</object>
+        <object>objects\sara_lift_ob</object>
+        <object>objects\girl_lift_ob</object>
+        <object>objects\cut2_con_ob</object>
+      </objects>
+      <objects name="NPC">
+        <object>objects\bigdog_ob</object>
+        <object>objects\bigdog_want_ob</object>
+      </objects>
+      <objects name="Item">
+        <object>objects\bone_ob</object>
+        <object>objects\mokjul_ob</object>
+      </objects>
+      <object>objects\ch0_1_girl_ob</object>
+      <object>objects\ch0_check_ob</object>
     </objects>
     <object>objects\cut_skip_ob</object>
+    <object>objects\restart_ob</object>
   </objects>
   <timelines name="timelines">
     <timelines name="Intro">
@@ -134,16 +188,19 @@
     </timelines>
     <timelines name="Chapter 0">
       <timeline>timelines\ch0_cut0_time</timeline>
+      <timeline>timelines\ch0_cut1_time</timeline>
+      <timeline>timelines\ch0_cut2_time</timeline>
     </timelines>
   </timelines>
   <rooms name="rooms">
     <room>rooms\Intro0</room>
     <room>rooms\intro1</room>
+    <room>rooms\title</room>
     <room>rooms\ch0_cut0</room>
     <room>rooms\ch0_0</room>
-    <room>rooms\title</room>
-    <room>rooms\room4</room>
-    <room>rooms\room3</room>
+    <room>rooms\ch0_cut1</room>
+    <room>rooms\ch0_1</room>
+    <room>rooms\ch0_cut2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

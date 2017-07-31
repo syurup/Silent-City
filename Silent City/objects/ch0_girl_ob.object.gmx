@@ -59,6 +59,9 @@
             <kind>1</kind>
             <string>background_visible[1] = 1;
 image_speed = 0.2;
+        if !audio_is_playing(woman_walk_snd){
+        audio_play_sound(woman_walk_snd,1,1);
+        }
 </string>
           </argument>
         </arguments>

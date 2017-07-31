@@ -58,6 +58,7 @@
           <argument>
             <kind>1</kind>
             <string>global.fade = 0;
+global.clear = 0;
 </string>
           </argument>
         </arguments>
@@ -80,7 +81,7 @@
         <arguments>
           <argument>
             <kind>11</kind>
-            <room>intro1</room>
+            <room>intro_kwc</room>
           </argument>
         </arguments>
       </action>

@@ -50,6 +50,7 @@
             <kind>1</kind>
             <string>global.bone = 1;
 instance_destroy();
+audio_play_sound(get_snd,1,0);
 </string>
           </argument>
         </arguments>

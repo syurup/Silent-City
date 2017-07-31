@@ -59,6 +59,7 @@ if(fade == 1)
     }
 if(fade == 1 and background_alpha[1] == 1)
     {
+        audio_stop_sound(elevator_snd);
         room = ch0_2;
     }
 </string>

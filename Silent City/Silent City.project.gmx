@@ -11,6 +11,12 @@
     <sound>sound\walk_snd</sound>
     <sound>sound\dog_bark_snd</sound>
     <sound>sound\goomba_snd</sound>
+    <sound>sound\get_snd</sound>
+    <sound>sound\intro_bass_snd</sound>
+    <sounds name="chapter0">
+      <sound>sound\woman_walk_snd</sound>
+      <sound>sound\elevator_snd</sound>
+    </sounds>
   </sounds>
   <sprites name="sprites">
     <sprites name="Sara">
@@ -52,7 +58,7 @@
       <sprite>sprites\normal_wall_sp</sprite>
       <sprite>sprites\test_wall_sp</sprite>
       <sprite>sprites\oneway_wall_sp</sprite>
-      <sprite>sprites\instant_wall_spp</sprite>
+      <sprite>sprites\instant_wall_sp</sprite>
       <sprite>sprites\ch0_check_sp</sprite>
     </sprites>
     <sprites name="Entity">
@@ -75,30 +81,43 @@
     </sprites>
     <sprites name="Logo">
       <sprite>sprites\title_logo_sp</sprite>
+      <sprite>sprites\tobe_sp</sprite>
+      <sprite>sprites\kwc_sp</sprite>
     </sprites>
-    <sprites name="Cutscene">
-      <sprites name="Chapter 0">
-        <sprites name="cutscene 0">
-          <sprite>sprites\ch0_girl_stop_sp</sprite>
-          <sprite>sprites\ch0_girl_walk_sp</sprite>
-          <sprite>sprites\ch0_dog_run_sp</sprite>
-          <sprite>sprites\ch0_girl_walk_left_sp</sprite>
-          <sprite>sprites\ch0_dog_walk_sp</sprite>
-          <sprite>sprites\ch0_dog_stop_sp</sprite>
-        </sprites>
-        <sprites name="cutscene 1">
-          <sprite>sprites\ch0_cut1_dog_sp</sprite>
-          <sprite>sprites\ch0_cut1_dog_left_sp</sprite>
-          <sprite>sprites\ch0_cut1_reddog_sp</sprite>
-        </sprites>
-        <sprites name="cutscene 2">
-          <sprite>sprites\lift_sp</sprite>
-          <sprite>sprites\sara_lift_sp</sprite>
-          <sprite>sprites\girl_lift_sp</sprite>
-          <sprite>sprites\girl_lift_see_sp</sprite>
-          <sprite>sprites\sara_lift_stop_sp</sprite>
-        </sprites>
+    <sprites name="Chapter 0">
+      <sprites name="cutscene 0">
+        <sprite>sprites\ch0_girl_stop_sp</sprite>
+        <sprite>sprites\ch0_girl_walk_sp</sprite>
+        <sprite>sprites\ch0_dog_run_sp</sprite>
+        <sprite>sprites\ch0_girl_walk_left_sp</sprite>
+        <sprite>sprites\ch0_dog_walk_sp</sprite>
+        <sprite>sprites\ch0_dog_stop_sp</sprite>
+      </sprites>
+      <sprites name="cutscene 1">
+        <sprite>sprites\ch0_cut1_dog_sp</sprite>
+        <sprite>sprites\ch0_cut1_dog_left_sp</sprite>
+        <sprite>sprites\ch0_cut1_reddog_sp</sprite>
+      </sprites>
+      <sprites name="cutscene 2">
+        <sprite>sprites\lift_sp</sprite>
+        <sprite>sprites\sara_lift_sp</sprite>
+        <sprite>sprites\girl_lift_sp</sprite>
+        <sprite>sprites\girl_lift_see_sp</sprite>
+        <sprite>sprites\sara_lift_stop_sp</sprite>
+      </sprites>
+      <sprites name="ch0_1">
         <sprite>sprites\ch0_1_girl_sp</sprite>
+      </sprites>
+      <sprites name="ch0_2">
+        <sprite>sprites\ch0_2_girl_sp</sprite>
+        <sprite>sprites\ch0_2_girl_stop_sp</sprite>
+      </sprites>
+      <sprites name="cutscene 3">
+        <sprite>sprites\cut3_ball_sp</sprite>
+      </sprites>
+      <sprites name="cutscene 4">
+        <sprite>sprites\cut4_sara_sp</sprite>
+        <sprite>sprites\cut4_sara_stop_sp</sprite>
       </sprites>
     </sprites>
     <sprites name="Items">
@@ -109,6 +128,7 @@
       <sprite>sprites\bigdog_sp</sprite>
       <sprite>sprites\bigdog_want_sp</sprite>
     </sprites>
+    <sprite>sprites\description_sp</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\White_bg</background>
@@ -122,6 +142,10 @@
       <background>background\ch0_cut1_bg</background>
       <background>background\ch0_1_bg</background>
       <background>background\ch0_cut2_bg</background>
+      <background>background\ch0_2_bg</background>
+      <background>background\ch0_cut3_bg</background>
+      <background>background\ch0_3_bg</background>
+      <background>background\ch0_cut4_bg</background>
     </backgrounds>
   </backgrounds>
   <paths name="paths">
@@ -138,7 +162,7 @@
       <object>objects\main_logo_ob</object>
       <object>objects\silent_logo_ob</object>
       <object>objects\title_logo_ob</object>
-      <object>objects\Intro_skip_ob</object>
+      <object>objects\intro_kwc_ob</object>
     </objects>
     <objects name="Blocks">
       <object>objects\normal_wall_ob</object>
@@ -176,11 +200,34 @@
         <object>objects\bone_ob</object>
         <object>objects\mokjul_ob</object>
       </objects>
-      <object>objects\ch0_1_girl_ob</object>
-      <object>objects\ch0_check_ob</object>
+      <objects name="ch0_1">
+        <object>objects\ch0_1_check_ob</object>
+        <object>objects\ch0_1_girl_ob</object>
+      </objects>
+      <objects name="ch0_2">
+        <object>objects\ch0_2_girl_ob</object>
+        <object>objects\ch0_2_con</object>
+      </objects>
+      <objects name="cutscene 3">
+        <object>objects\cut3_ball_ob</object>
+        <object>objects\cut3_sara_ob</object>
+        <object>objects\cut3_dog_ob</object>
+        <object>objects\cut3_dog_left_ob</object>
+      </objects>
+      <objects name="ch0_3">
+        <object>objects\ch0_3_check_ob</object>
+      </objects>
+      <objects name="cutscene 4">
+        <object>objects\cut4_dog_ob</object>
+        <object>objects\cut4_sara_ob</object>
+        <object>objects\cut4_con_ob</object>
+        <object>objects\cut4_reddog_ob</object>
+      </objects>
     </objects>
     <object>objects\cut_skip_ob</object>
     <object>objects\restart_ob</object>
+    <object>objects\tobe_ob</object>
+    <object>objects\description_ob</object>
   </objects>
   <timelines name="timelines">
     <timelines name="Intro">
@@ -190,10 +237,13 @@
       <timeline>timelines\ch0_cut0_time</timeline>
       <timeline>timelines\ch0_cut1_time</timeline>
       <timeline>timelines\ch0_cut2_time</timeline>
+      <timeline>timelines\ch0_cut3_time</timeline>
+      <timeline>timelines\ch0_cut4_time</timeline>
     </timelines>
   </timelines>
   <rooms name="rooms">
     <room>rooms\Intro0</room>
+    <room>rooms\intro_kwc</room>
     <room>rooms\intro1</room>
     <room>rooms\title</room>
     <room>rooms\ch0_cut0</room>
@@ -201,6 +251,11 @@
     <room>rooms\ch0_cut1</room>
     <room>rooms\ch0_1</room>
     <room>rooms\ch0_cut2</room>
+    <room>rooms\ch0_2</room>
+    <room>rooms\ch0_cut3</room>
+    <room>rooms\ch0_3</room>
+    <room>rooms\ch0_cut4</room>
+    <room>rooms\tobe</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

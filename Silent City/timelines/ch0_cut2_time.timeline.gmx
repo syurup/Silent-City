@@ -23,6 +23,7 @@
     {
         vspeed = -2;
     }
+    audio_play_sound(elevator_snd,1,0);
 </string>
           </argument>
         </arguments>

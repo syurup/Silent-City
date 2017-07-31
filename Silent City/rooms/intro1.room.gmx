@@ -53,7 +53,6 @@
   <instances>
     <instance objName="intro_jbj_ob" x="352" y="256" name="inst_D3282C4C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="intro_jbjlogo_ob" x="464" y="328" name="inst_9F731DA8" locked="0" code="" scaleX="0.3125" scaleY="0.3125" colour="4294967295" rotation="0"/>
-    <instance objName="Intro_skip_ob" x="0" y="-16" name="inst_3D92EE7D" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

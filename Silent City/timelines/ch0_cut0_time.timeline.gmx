@@ -64,6 +64,7 @@ with(ch0_dog_ob)
         hspeed = 0;
         sprite_index = ch0_dog_stop_sp;
     }
+    audio_stop_sound(woman_walk_snd);
 </string>
           </argument>
         </arguments>
@@ -124,7 +125,7 @@ with(ch0_dog_ob)
         sprite_index = ch0_girl_walk_left_sp;
         hspeed = -2;
     }
-    
+    audio_play_sound(woman_walk_snd,1,1);
 with(ch0_fall_sara_ob)
     {
         vspeed = 2;
@@ -158,6 +159,7 @@ with(ch0_fall_sara_ob)
     {
         vspeed = 0;
     }
+    audio_stop_sound(woman_walk_snd);
 room = ch0_0;
 </string>
           </argument>

@@ -299,7 +299,7 @@ if(global.goomba == 1)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(room == title)
+            <string>if(room == title and global.clear == 0)
     {
         room = ch0_cut0;
     }
@@ -312,6 +312,16 @@ if(room == ch0_0)
 if(room == ch0_1)
     {
         room = ch0_cut2;
+    }
+    
+if(room == ch0_2)
+    {
+        room = ch0_cut3;
+    }
+
+if(room == ch0_3)
+    {
+        room = ch0_cut4;
     }
 </string>
           </argument>

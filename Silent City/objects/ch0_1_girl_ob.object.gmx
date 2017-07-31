@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>image_speed = 0;
+
 </string>
           </argument>
         </arguments>
@@ -48,12 +49,40 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(ch0_check_ob.checksara == 1)
+            <string>if(ch0_1_check_ob.checksara == 1)
     {
         hspeed = 1.5;
         image_speed = 0.2;
+        if !(audio_is_playing(woman_walk_snd))
+        {
+        audio_play_sound(woman_walk_snd,1,1);
+        ch0_1_check_ob.checksara = 0;
+        }
     }
+
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="normal_wall_ob">
+      <action>
+        <libid>1</libid>
+        <id>212</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_end_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>woman_walk_snd</sound>
           </argument>
         </arguments>
       </action>
